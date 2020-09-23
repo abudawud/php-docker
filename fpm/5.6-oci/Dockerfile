@@ -3,14 +3,13 @@ FROM abudawud/php-fpm:5.6
 LABEL version="1.0"
 LABEL maintainer="abudawud <warishafidz@gmail.com>"
 
-COPY instantclient_11_2.tar.xz ./
-
 RUN set -eux; \
 	# add dependencie
 	apk add libaio libnsl; \
 	ln -s /usr/lib/libnsl.so.2 /usr/lib/libnsl.so.1; \
 	# extract sources
 	docker-php-source extract; \
+	wget https://raw.githubusercontent.com/abudawud/php-docker/master/fpm/5.6-oci/instantclient_11_2.tar.xz; \
 	tar xJf instantclient_11_2.tar.xz; \
 	mv instantclient_11_2 /usr/lib; \
 	# setup client
