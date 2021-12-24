@@ -8,4 +8,7 @@ ADD https://getcomposer.org/composer-stable.phar /usr/local/bin/composer
 
 RUN set -eux; \
 	apk add rsync git; \
-	chmod uga+x /usr/local/bin/install-php-extensions && sync;
+	chmod uga+x /usr/local/bin/install-php-extensions /usr/local/bin/composer && sync;
+
+RUN set -eux; \
+    install-php-extensions gd zip intl
